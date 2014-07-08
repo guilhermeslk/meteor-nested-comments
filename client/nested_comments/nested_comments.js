@@ -2,6 +2,12 @@
   Templates
 **/
 
+Deps.autorun(function() {
+  Meteor.subscribe("usersData");
+  Meteor.subscribe("postList");
+  Meteor.subscribe("commentsList");
+})
+
 Template.newPost.events({
   "submit .newPost": function(evt, tmpl) {
       evt.preventDefault();
