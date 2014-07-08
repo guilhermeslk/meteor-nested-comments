@@ -1,0 +1,103 @@
+<head>
+  <title>Nested Comments w/ Bootstrap!</title>
+</head>
+
+<body>
+	<div class="container">
+  		<h1>Blog</h1>
+  		<hr/>
+  		{{> postList}}
+  	</div>
+</body>
+
+<template name="postList">
+	<div class="row">
+		<div class="span8">
+			{{#each posts}}
+				{{> postItem}}
+			{{/each}}
+		</div>
+		<div class="span4">
+			{{> loginButtons}} 
+			{{#if currentUser}}
+				{{> newPost}}
+			{{/if}}
+		</div>
+	</div>
+</template>
+
+<template name="commentList">
+	<h3>Comments&nbsp;({{commentsCounter}})</h3>
+	<ul class="media-list">
+		{{#each comments}}
+			{{#unless parentId}}
+  			{{> commentItem}}
+			{{/unless}}
+		{{/each}}
+	</ul>
+</template>
+
+<template name="postItem">
+	<h2>{{title}}</h2>
+  	<small class="muted">{{createdAt}}</small>
+  	<p>{{description}}</p>
+  	<div class="text-right">
+  		<span>Published by {{userEmail currentUser}}</span>
+  	</div>
+  	<hr/>
+  	{{> newComment}}
+  	{{> commentList}}
+</template>
+
+<template name="commentItem">
+	<li class="media">
+	   	<a class="pull-left" href="#">
+	    	<img class="media-object img-circle" src="images/silhouette.png" width="50px" height="50px"/>
+	   	</a>
+	    <div class="media-body">
+	      	<h5 class="media-heading">{{userEmail currentUser}}
+			<br/>
+	      	<small class="text-muted">{{createdAt}}</small></h5> 
+			{{text}}
+			<div>
+				<small>
+		      		<a class="btnReplyComment">Reply</a>
+		      	</small>
+		      	<small class="text-muted">|</small>
+		      	<small>
+		      		<a class="btnRemoveComment">Remove</a>
+		      	</small>
+	      	</div>
+	      	{{#if hasParent}}
+	    		{{> newComment}}
+	    	{{/if}}
+	      	{{#each children}}
+	    		{{> commentItem}}
+	    	{{/each}}
+	    </div>
+	 </li>
+</template>
+
+<template name="newPost">
+	<form class="newPost">
+  		<fieldset>
+    		<legend>New Post</legend>
+    		<label>Title</label>
+    		<input class="postTitle" type="text" placeholder="Title here...">
+    		<label>Description</label>
+    		<textarea class="postBody" placeholder="Description here..." rows="5"></textarea>
+    		<button type="submit" class="btn">Submit</button>
+  		</fieldset>
+	</form>
+</template>
+
+<template name="newComment">
+	<div class="row">
+		<div class="span7">
+			<img class="img-circle" src="images/silhouette.png" width="50px" height="50px" />
+			<textarea class="span6 commentText" rows="3" placeholder="Comment Here..."></textarea>
+			<br/>
+			<button class="btn btn-primary addComment">Comment</button>
+		</div>
+	</div>
+</template>
