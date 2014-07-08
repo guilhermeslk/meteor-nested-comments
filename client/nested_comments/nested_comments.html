@@ -69,10 +69,12 @@
 			      		<a class="btnRemoveComment">Remove</a>
 			      	</small>
 		      	</div>
-		      	{{#if hasParent}}
-	    			{{> newComment}}
-	    		{{/if}}
-	      	{{/if}}
+		    {{/if}}
+
+		    {{#if hasParent}}
+	    		{{> newComment}}
+	    	{{/if}}
+	      	
 	      	
 	      	{{#each children}}
 	    		{{> commentItem}}
@@ -95,12 +97,14 @@
 </template>
 
 <template name="newComment">
-	<div class="row">
-		<div class="span7">
-			<img class="img-circle" src="images/silhouette.png" width="50px" height="50px" />
-			<textarea class="span6 commentText" rows="3" placeholder="Comment Here..."></textarea>
-			<br/>
-			<button class="btn btn-primary addComment">Comment</button>
+	{{#if currentUser}}
+		<div class="row">
+			<div class="span7">
+				<img class="img-circle" src="images/silhouette.png" width="50px" height="50px" />
+				<textarea class="span6 commentText" rows="3" placeholder="Comment Here..."></textarea>
+				<br/>
+				<button class="btn btn-primary addComment">Comment</button>
+			</div>
 		</div>
-	</div>
+	{{/if}}
 </template>
