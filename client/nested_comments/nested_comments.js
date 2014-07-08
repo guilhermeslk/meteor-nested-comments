@@ -66,13 +66,16 @@ Template.newComment.events({
     var comment = {
       text: tmpl.find(".commentText").value,
       createdAt: new Date(),
-      postId: this._id,
       userId: Meteor.userId()
     };
 
     if(Session.get("parentId")) {
       comment.parentId = Session.get("parentId");
+      comment.postId = this.postId;
+    } else {
+      comment.postId = this._id;
     }
+
 
     Comments.insert(comment);
 
