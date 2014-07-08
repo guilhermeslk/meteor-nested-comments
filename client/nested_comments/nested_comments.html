@@ -69,10 +69,11 @@
 			      		<a class="btnRemoveComment">Remove</a>
 			      	</small>
 		      	</div>
+		      	{{#if hasParent}}
+	    			{{> newComment}}
+	    		{{/if}}
 	      	{{/if}}
-	      	{{#if hasParent}}
-	    		{{> newComment}}
-	    	{{/if}}
+	      	
 	      	{{#each children}}
 	    		{{> commentItem}}
 	    	{{/each}}
