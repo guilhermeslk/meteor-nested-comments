@@ -59,15 +59,17 @@
 			<br/>
 	      	<small class="text-muted">{{createdAt}}</small></h5> 
 			{{text}}
-			<div>
-				<small>
-		      		<a class="btnReplyComment">Reply</a>
-		      	</small>
-		      	<small class="text-muted">|</small>
-		      	<small>
-		      		<a class="btnRemoveComment">Remove</a>
-		      	</small>
-	      	</div>
+			{{#if currentUser}}
+				<div>
+					<small>
+			      		<a class="btnReplyComment">Reply</a>
+			      	</small>
+			      	<small class="text-muted">|</small>
+			      	<small>
+			      		<a class="btnRemoveComment">Remove</a>
+			      	</small>
+		      	</div>
+	      	{{/if}}
 	      	{{#if hasParent}}
 	    		{{> newComment}}
 	    	{{/if}}
