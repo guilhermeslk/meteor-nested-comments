@@ -1,7 +1,7 @@
 /**
 	App: Comments w/ Bootstrap
 	Author: Guilherme Solinscki (guilherme.slnk@gmail.com)
-	Github: https://github.com/guilhermeslk/meteor-bs-comments
+	Github: https://github.com/guilhermeslk/meteor-nested-comments
 **/
 Meteor.startup(function() {
 	UI.registerHelper('userEmail', function(userId) {
